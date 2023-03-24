@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% load static %}
+    {% load crispy_forms_tags %}
+        <div class="col-md-6 col-md-offset-3">
+            <legend>
+                <h1>Register</h1>
+            </legend>
+            <form method="POST" action="" style="margin-top:3%">{% csrf_token %}
+                {{ form|crispy }}
+                <!-- <input type="submit" class="btn tbn-default" /> -->
+                <button class="btn btn-primary" type="submit">Register</button>
+            </form>
+            <p class="text-center">If you already have an account, <a href="/login">login</a> instead.</p>
+        </div>
+{% endblock %}
