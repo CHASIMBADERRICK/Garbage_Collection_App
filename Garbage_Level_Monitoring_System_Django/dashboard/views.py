@@ -4,6 +4,10 @@ from .forms import UserLoginForm,  NewUserForm, UserRegisterForm
 from django.contrib.auth.decorators import login_required
 from api.models import Readings, Dustbins
 from django.contrib import messages
+from .forms import UpdateUserForm, UpdateProfileForm
+from django.urls import reverse_lazy
+# from django.contrib.auth.views import PasswordChangeView
+# from django.contrib.messages.views import SuccessMessageMixin
 
 
 # Create your views here.
@@ -90,3 +94,27 @@ def logout_view(request):
 @login_required
 def profile_view(request):
     return render(request, 'profile.html')
+
+
+@login_required
+def profile(request):
+    if request.method == 'POST':
+        user_form = UpdateUserForm(request.POST, instance=request.user)
+        profile_form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, 'Your profile is updated successfully')
+            return redirect(to='profile')
+    else:
+        user_form = UpdateUserForm(instance=request.user)
+        profile_form = UpdateProfileForm(instance=request.user.profile)
+
+    return render(request, 'profile.html', {'form': form, 'profile_form': profile_form})
+
+# def ChangePassword_View(request):
+#     template_name = 'change_password.html'
+#     success_message = "Successfully Changed Your Password"
+#     success_url = reverse_lazy('dashboard')
+#     return render(request, 'change_password.html')

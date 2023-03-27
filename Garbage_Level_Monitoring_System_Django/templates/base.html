@@ -38,16 +38,13 @@
                             <li><a href="#">Welcome, {{ request.user.username }}</a></li>
                             <li>
                                 <a href="/logout">
-                                  <span class="glyphicon glyphicon-log-out"></span> Logout
+                                    <span class="glyphicon glyphicon-log-out"></span> Logout
                                 </a>
                             </li>
-
+                            
                             <li>
                                 <a href="/profile"><span class="glyphicon glyphicon-profile"></span> Profile </a>
                             </li>
-                            <!-- <li class="nav-item">
-                                <a class="nav-link" href="#">Welcome, {{user.username}}</a>
-                            </li> -->
                         {% else %}
                             <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                         {% endif %}
