@@ -22,5 +22,6 @@ urlpatterns = [
     re_path(r'^register/$', views.register_view),
     re_path(r'^logout/$', views.logout_view),
     re_path(r'^dashboard/$', views.dashboard_view),
+    re_path(r'^profile/$', views.profile_view),
     re_path(r'^details/(?P<dustbin_id>\d+)/$', views.details_view),
 ]

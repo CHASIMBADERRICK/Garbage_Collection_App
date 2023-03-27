@@ -86,3 +86,7 @@ def register_view(request):
 def logout_view(request):
     logout(request)
     return redirect('/login/')
+
+@login_required
+def profile_view(request):
+    return render(request, 'profile.html')
